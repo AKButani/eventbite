@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Users, Star, Clock, UtensilsCrossed } from 'lucide-react';
 import type { Event } from '../types';
+import SocialCostBadge from './SocialCostBadge';
 
 interface EventCardProps {
   event: Event;
@@ -81,12 +83,42 @@ const formatTime = (date: Date) => {
 export default function EventCard({ event }: EventCardProps) {
   const navigate = useNavigate();
   const urgencyBadge = getUrgencyBadge(event.time);
+  const [isEating, setIsEating] = useState(false);
+  const [animationDuration, setAnimationDuration] = useState(1500);
+
+  const handleClick = () => {
+    // Random duration between 1000ms and 2000ms
+    const duration = Math.floor(Math.random() * 1000);
+    setAnimationDuration(duration);
+    setIsEating(true);
+
+    setTimeout(() => {
+      navigate(`/event/${event.id}`);
+    }, duration);
+  };
 
   return (
     <div
-      onClick={() => navigate(`/event/${event.id}`)}
-      className="card cursor-pointer hover:shadow-lg transition-shadow duration-200"
+      onClick={handleClick}
+      className={`card cursor-pointer hover:shadow-lg transition-all duration-200 relative overflow-hidden ${
+        isEating ? 'pacman-eating' : ''
+      }`}
+      style={isEating ? {
+        animationDuration: `0.1s, ${animationDuration}ms`
+      } : undefined}
     >
+      {/* Pac-Man Animation */}
+      {isEating && (
+        <div className="absolute inset-0 z-50 pointer-events-none">
+          <div
+            className="pacman"
+            style={{
+              animationDuration: `0.4s, ${animationDuration}ms`
+            }}
+          ></div>
+        </div>
+      )}
+
       {/* Image */}
       {event.imageUrl && (
         <div className="relative h-48 overflow-hidden">
@@ -138,10 +170,17 @@ export default function EventCard({ event }: EventCardProps) {
           <span className="truncate">{event.location.name}</span>
         </div>
 
+        {/* Social Cost Badge */}
+        {event.socialCost && (
+          <div className="mb-3">
+            <SocialCostBadge level={event.socialCost} />
+          </div>
+        )}
+
         {/* Footer with rating and attendees */}
         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           <div className="flex items-center space-x-4">
-            {event.hasFood && event.foodRating > 0 && (
+            {event.hasFood && event.foodRating && event.foodRating > 0 && (
               <div className="flex items-center text-sm">
                 <Star className="h-4 w-4 text-yellow-500 fill-current mr-1" />
                 <span className="font-medium text-gray-900">

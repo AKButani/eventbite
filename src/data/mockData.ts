@@ -1,4 +1,5 @@
 import type { Event, Review, OrganizerStats } from '../types';
+import type { LeaderboardUser } from '../components/LeaderboardWidget';
 
 const now = new Date();
 
@@ -54,6 +55,7 @@ export const mockEvents: Event[] = [
     category: 'Leftover Food',
     walkingMinutes: 5,
     imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400',
+    socialCost: 'stealth',
   },
   {
     id: 'l2',
@@ -73,6 +75,7 @@ export const mockEvents: Event[] = [
     category: 'Leftover Food',
     walkingMinutes: 7,
     imageUrl: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400',
+    socialCost: 'stealth',
   },
   {
     id: 'e1',
@@ -93,6 +96,7 @@ export const mockEvents: Event[] = [
     walkingMinutes: 2,
     imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400',
     reviews: [mockReviews[0]],
+    socialCost: 'polite',
   },
   {
     id: 'e2',
@@ -113,6 +117,7 @@ export const mockEvents: Event[] = [
     walkingMinutes: 5,
     imageUrl: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400',
     reviews: [mockReviews[1]],
+    socialCost: 'trap',
   },
   {
     id: 'e3',
@@ -290,5 +295,29 @@ export const mockOrganizerStats: OrganizerStats[] = [
     attendees: 62,
     rating: 5.0,
     ratingCount: 15,
+  },
+];
+
+export const mockLeaderboardUsers: LeaderboardUser[] = [
+  {
+    rank: 1,
+    username: 'Alex_CS',
+    title: 'The Tupperware Lord',
+    stat: '247',
+    statLabel: 'events',
+  },
+  {
+    rank: 2,
+    username: 'Sarah_MechE',
+    title: 'Crust Hunter',
+    stat: '189',
+    statLabel: 'events',
+  },
+  {
+    rank: 3,
+    username: 'Dave',
+    title: 'Buffet Bandit',
+    stat: '156',
+    statLabel: 'events',
   },
 ];

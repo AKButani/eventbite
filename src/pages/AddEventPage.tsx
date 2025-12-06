@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TrendingUp, BarChart3, Award, UtensilsCrossed } from 'lucide-react';
+import { saveEvent } from '../utils/eventStorage';
+import type { Event } from '../types';
 
 export default function AddEventPage() {
   const navigate = useNavigate();
@@ -18,7 +20,34 @@ export default function AddEventPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Event submitted successfully! (Demo mode - not actually saved)');
+
+    // Combine date and time into a Date object
+    const eventDateTime = new Date(`${formData.date}T${formData.time}`);
+
+    // Create the event object
+    const newEvent: Omit<Event, 'id'> = {
+      title: formData.title,
+      host: formData.host,
+      location: {
+        lat: 47.3769, // Default ETH coordinates
+        lng: 8.5417,
+        name: formData.locationName,
+      },
+      time: eventDateTime,
+      hasFood: formData.hasFood,
+      requiresSignup: formData.requiresSignup,
+      foodRating: formData.hasFood ? 4.0 : undefined,
+      attendeeCount: 0,
+      description: formData.description,
+      category: formData.category,
+      walkingMinutes: 5, // Default value
+      imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400', // Default image
+    };
+
+    // Save to localStorage
+    saveEvent(newEvent);
+
+    alert('Event published successfully!');
     navigate('/');
   };
 

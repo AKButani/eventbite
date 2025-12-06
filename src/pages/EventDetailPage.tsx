@@ -10,14 +10,28 @@ import {
   XCircle,
 } from 'lucide-react';
 import { mockEvents } from '../data/mockData';
-import { useState } from 'react';
+import { getCustomEvents } from '../utils/eventStorage';
+import { useState, useEffect } from 'react';
+import type { Event } from '../types';
 
 export default function EventDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [isGoing, setIsGoing] = useState(false);
+  const [event, setEvent] = useState<Event | null>(null);
 
-  const event = mockEvents.find((e) => e.id === id);
+  useEffect(() => {
+    // Search in both mock and custom events
+    const mockEvent = mockEvents.find((e) => e.id === id);
+    if (mockEvent) {
+      setEvent(mockEvent);
+    } else {
+      // Search in custom events
+      const customEvents = getCustomEvents();
+      const customEvent = customEvents.find((e) => e.id === id);
+      setEvent(customEvent || null);
+    }
+  }, [id]);
 
   if (!event) {
     return (
@@ -131,7 +145,7 @@ export default function EventDetailPage() {
       </div>
 
       {/* Food Rating Section */}
-      {event.hasFood && (
+      {event.hasFood && event.foodRating && (
         <div className="card p-6 mb-8 border-2 border-accent-200 bg-accent-50">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -145,7 +159,7 @@ export default function EventDetailPage() {
             <div className="flex items-center">
               <Star className="h-8 w-8 text-yellow-500 fill-current" />
               <span className="text-4xl font-bold text-gray-900 ml-2">
-                {event.foodRating?.toFixed(1)}
+                {event.foodRating.toFixed(1)}
               </span>
               <span className="text-gray-500 ml-1">/5</span>
             </div>
@@ -157,7 +171,7 @@ export default function EventDetailPage() {
               <Star
                 key={star}
                 className={`h-6 w-6 ${
-                  star <= event.foodRating
+                  star <= (event.foodRating || 0)
                     ? 'text-yellow-500 fill-current'
                     : 'text-gray-300'
                 }`}

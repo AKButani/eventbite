@@ -18,7 +18,7 @@ export default function Layout() {
               <img src="/logo.jpeg" alt="Eventbite Logo" className="h-8 w-8 object-contain" />
               <div>
                 <h1 className="text-2xl font-bold text-primary-600">Eventbite</h1>
-                <p className="text-xs text-gray-500 -mt-1">free lunch does exist.</p>
+                <p className="text-xs text-gray-500 -mt-1">free lunch <b><i>does</i></b> exist.</p>
               </div>
             </Link>
 

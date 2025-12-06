@@ -18,6 +18,7 @@ export interface Event {
   imageUrl?: string;
   reviews?: Review[];
   organizerId?: string;
+  socialCost?: 'stealth' | 'polite' | 'trap';
 }
 
 export interface Review {

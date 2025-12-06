@@ -1,8 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Filter } from 'lucide-react';
 import EventCard from '../components/EventCard';
-import { mockEvents } from '../data/mockData';
-import type { FilterType } from '../types';
+import LeaderboardWidget from '../components/LeaderboardWidget';
+import { mockEvents, mockLeaderboardUsers } from '../data/mockData';
+import { getCustomEvents } from '../utils/eventStorage';
+import type { FilterType, Event } from '../types';
 
 const filters: { id: FilterType; label: string }[] = [
   { id: 'all', label: 'All Events' },
@@ -15,9 +17,16 @@ const filters: { id: FilterType; label: string }[] = [
 
 export default function HomePage() {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const [customEvents, setCustomEvents] = useState<Event[]>([]);
+
+  // Load custom events from localStorage on mount
+  useEffect(() => {
+    setCustomEvents(getCustomEvents());
+  }, []);
 
   const filteredEvents = useMemo(() => {
-    let events = [...mockEvents];
+    // Combine mock events with custom events
+    let events = [...mockEvents, ...customEvents];
 
     switch (activeFilter) {
       case 'leftover-food':
@@ -51,7 +60,7 @@ export default function HomePage() {
     }
 
     return events.sort((a, b) => a.time.getTime() - b.time.getTime());
-  }, [activeFilter]);
+  }, [activeFilter, customEvents]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-20 md:pb-6">
@@ -88,6 +97,11 @@ export default function HomePage() {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Leaderboard - Horizontal */}
+      <div className="mb-6">
+        <LeaderboardWidget users={mockLeaderboardUsers} />
       </div>
 
       {/* Event Count */}
