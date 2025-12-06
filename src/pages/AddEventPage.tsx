@@ -136,6 +136,7 @@ export default function AddEventPage() {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent"
           >
             <option value="">Select a category</option>
+            <option value="Leftover Food">Leftover Food</option>
             <option value="Social">Social</option>
             <option value="Workshop">Workshop</option>
             <option value="Talk">Talk</option>

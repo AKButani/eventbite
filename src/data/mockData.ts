@@ -37,6 +37,44 @@ export const mockReviews: Review[] = [
 
 export const mockEvents: Event[] = [
   {
+    id: 'l1',
+    title: 'Pizza Left at CAB Building',
+    host: 'Anonymous Student',
+    location: {
+      lat: 47.3782,
+      lng: 8.5478,
+      name: 'CAB Building, Universitätstrasse 6',
+    },
+    time: createDate(0),
+    hasFood: true,
+    requiresSignup: false,
+    foodRating: 4.0,
+    attendeeCount: 5,
+    description: 'About 3 boxes of pizza left from our study group session. First come, first served! Located in CAB E-Lounge.',
+    category: 'Leftover Food',
+    walkingMinutes: 5,
+    imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400',
+  },
+  {
+    id: 'l2',
+    title: 'Sandwiches & Snacks Available',
+    host: 'ML Building Conference Room',
+    location: {
+      lat: 47.3774,
+      lng: 8.5451,
+      name: 'ML Building, Sonneggstrasse 3',
+    },
+    time: createDate(0.08),
+    hasFood: true,
+    requiresSignup: false,
+    foodRating: 3.5,
+    attendeeCount: 3,
+    description: 'Conference just ended. Lots of sandwiches, fruit, and drinks left over. Come grab some before it goes to waste!',
+    category: 'Leftover Food',
+    walkingMinutes: 7,
+    imageUrl: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400',
+  },
+  {
     id: 'e1',
     title: 'VIS Welcome Apéro',
     host: 'VIS (Computer Science Students)',
@@ -52,6 +90,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 87,
     description: 'Join us for the semester opening apéro! Free pizza, drinks, and networking with fellow CS students. No registration needed, just show up!',
     category: 'Social',
+    walkingMinutes: 2,
     imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400',
     reviews: [mockReviews[0]],
   },
@@ -71,6 +110,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 45,
     description: 'Hands-on workshop on neural networks. Lunch provided with sandwiches and beverages. Limited spots available!',
     category: 'Workshop',
+    walkingMinutes: 5,
     imageUrl: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400',
     reviews: [mockReviews[1]],
   },
@@ -90,6 +130,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 62,
     description: 'Startup founder shares insights over lunch. Catered meal from Tibits included!',
     category: 'Talk',
+    walkingMinutes: 3,
     imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400',
     reviews: [mockReviews[2]],
   },
@@ -109,6 +150,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 120,
     description: 'Explore our labs and enjoy complimentary refreshments. Snacks and coffee available throughout the day.',
     category: 'Open House',
+    walkingMinutes: 8,
     imageUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400',
   },
   {
@@ -127,6 +169,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 35,
     description: '24-hour hackathon with all meals provided! Dinner, midnight snacks, breakfast, and lunch included.',
     category: 'Hackathon',
+    walkingMinutes: 7,
     imageUrl: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400',
   },
   {
@@ -145,6 +188,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 28,
     description: 'Relax with board games and free pizza! Bring your friends or make new ones.',
     category: 'Social',
+    walkingMinutes: 4,
     imageUrl: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=400',
   },
   {
@@ -163,6 +207,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 250,
     description: 'Meet top tech employers! Free lunch buffet from 12-2pm for all attendees.',
     category: 'Career',
+    walkingMinutes: 6,
     imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=400',
   },
   {
@@ -181,6 +226,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 40,
     description: 'Deep dive into quantum algorithms. Lunch seminar format with sandwiches and salads.',
     category: 'Seminar',
+    walkingMinutes: 9,
     imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400',
   },
   {
@@ -199,6 +245,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 30,
     description: 'Interactive design thinking session with catered lunch. Learn human-centered design principles.',
     category: 'Workshop',
+    walkingMinutes: 12,
     imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400',
   },
   {
@@ -217,6 +264,7 @@ export const mockEvents: Event[] = [
     attendeeCount: 180,
     description: 'Taste dishes from around the world! Completely free for students. Various food stations with international cuisine.',
     category: 'Festival',
+    walkingMinutes: 10,
     imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400',
   },
 ];

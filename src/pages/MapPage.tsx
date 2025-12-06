@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import { icon } from 'leaflet';
 import { mockEvents } from '../data/mockData';
-import { Star, Users, UtensilsCrossed } from 'lucide-react';
+import { Star, Users, UtensilsCrossed, MapPin } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 
 const defaultIcon = icon({
@@ -15,10 +15,22 @@ const defaultIcon = icon({
   shadowSize: [41, 41],
 });
 
+const userLocationIcon = icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [30, 46],
+  iconAnchor: [15, 46],
+  popupAnchor: [1, -38],
+  shadowSize: [46, 46],
+  className: 'user-location-marker',
+});
+
 export default function MapPage() {
   const navigate = useNavigate();
 
   const ethCenter: [number, number] = [47.3769, 8.5417];
+  const userLocation: [number, number] = [47.3769, 8.5417]; // ETH HG placeholder
 
   const formatTime = (date: Date) => {
     const today = new Date();
@@ -65,6 +77,16 @@ export default function MapPage() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
+          {/* User Location Marker */}
+          <Marker position={userLocation} icon={userLocationIcon}>
+            <Popup>
+              <div className="p-2">
+                <h3 className="font-bold text-lg mb-1">Your Location</h3>
+                <p className="text-sm text-gray-600">ETH HG Building</p>
+              </div>
+            </Popup>
+          </Marker>
+
           {mockEvents.map((event) => (
             <Marker
               key={event.id}
@@ -88,6 +110,13 @@ export default function MapPage() {
                   <p className="text-sm text-gray-700 mb-2">
                     {formatTime(event.time)}
                   </p>
+
+                  <div className="flex items-center space-x-2 mb-2 text-sm">
+                    <MapPin className="h-4 w-4 text-primary-600" />
+                    <span className="font-semibold text-primary-600">
+                      {event.walkingMinutes * 2} Reels to reach ({event.walkingMinutes} min walk)
+                    </span>
+                  </div>
 
                   <div className="flex items-center space-x-3 mb-3 text-sm">
                     {event.hasFood && event.foodRating > 0 && (
@@ -119,6 +148,10 @@ export default function MapPage() {
       <div className="absolute bottom-4 left-4 z-[1000] bg-white rounded-lg shadow-lg p-4 max-w-xs">
         <h3 className="font-semibold text-gray-900 mb-2">Legend</h3>
         <div className="space-y-2 text-sm">
+          <div className="flex items-center">
+            <MapPin className="h-4 w-4 text-blue-600 mr-2" />
+            <span>Your location (ETH HG)</span>
+          </div>
           <div className="flex items-center">
             <div className="w-4 h-4 bg-accent-500 rounded-full mr-2"></div>
             <span>Events with free food</span>

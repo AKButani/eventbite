@@ -83,7 +83,14 @@ export default function EventCard({ event }: EventCardProps) {
           {urgencyBadge && (
             <div className="absolute top-3 left-3">{urgencyBadge}</div>
           )}
-          {event.hasFood && (
+          {event.category === 'Leftover Food' ? (
+            <div className="absolute top-3 right-3">
+              <span className="badge bg-orange-600 text-white font-bold shadow-lg flex items-center gap-1 animate-pulse">
+                <UtensilsCrossed className="h-3 w-3" />
+                Leftover Food!
+              </span>
+            </div>
+          ) : event.hasFood && (
             <div className="absolute top-3 right-3">
               <span className="badge bg-accent-500 text-white font-bold shadow-lg flex items-center gap-1">
                 <UtensilsCrossed className="h-3 w-3" />

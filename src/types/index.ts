@@ -14,6 +14,7 @@ export interface Event {
   attendeeCount: number;
   description: string;
   category: string;
+  walkingMinutes: number;
   imageUrl?: string;
   reviews?: Review[];
   organizerId?: string;
@@ -28,7 +29,7 @@ export interface Review {
   date: Date;
 }
 
-export type FilterType = 'all' | 'faculty' | 'no-signup' | 'nearby' | 'top-rated';
+export type FilterType = 'all' | 'leftover-food' | 'faculty' | 'no-signup' | 'nearby' | 'top-rated';
 
 export interface OrganizerStats {
   eventId: string;

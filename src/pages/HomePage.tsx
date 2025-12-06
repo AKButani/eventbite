@@ -6,6 +6,7 @@ import type { FilterType } from '../types';
 
 const filters: { id: FilterType; label: string }[] = [
   { id: 'all', label: 'All Events' },
+  { id: 'leftover-food', label: 'Leftover Food' },
   { id: 'faculty', label: 'Faculty Events' },
   { id: 'no-signup', label: 'No Signup' },
   { id: 'nearby', label: 'Nearby' },
@@ -19,6 +20,9 @@ export default function HomePage() {
     let events = [...mockEvents];
 
     switch (activeFilter) {
+      case 'leftover-food':
+        events = events.filter((e) => e.category === 'Leftover Food');
+        break;
       case 'faculty':
         events = events.filter(
           (e) =>

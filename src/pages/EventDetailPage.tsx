@@ -81,7 +81,7 @@ export default function EventDetailPage() {
       </div>
 
       {/* Key Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {/* Time Card */}
         <div className="card p-4">
           <div className="flex items-center text-gray-600 mb-2">
@@ -103,6 +103,18 @@ export default function EventDetailPage() {
           >
             {event.location.name}
           </Link>
+        </div>
+
+        {/* Reels to Reach Card */}
+        <div className="card p-4 border-2 border-primary-200 bg-primary-50">
+          <div className="flex items-center text-primary-700 mb-2">
+            <MapPin className="h-5 w-5 mr-2" />
+            <span className="font-semibold">Reels to Reach</span>
+          </div>
+          <p className="text-primary-900 font-bold text-2xl">
+            {event.walkingMinutes * 2}
+          </p>
+          <p className="text-sm text-primary-600">{event.walkingMinutes} min walk from HG</p>
         </div>
 
         {/* Attendees Card */}
