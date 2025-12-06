@@ -10,27 +10,42 @@ const getUrgencyBadge = (eventTime: Date) => {
   const now = new Date();
   const diffInMinutes = (eventTime.getTime() - now.getTime()) / (1000 * 60);
 
-  if (diffInMinutes < 0) {
-    return null;
-  } else if (diffInMinutes < 30) {
+  // Check if event is happening today
+  const isToday = eventTime.toDateString() === now.toDateString();
+
+  // Event is currently happening (assuming 2-hour duration)
+  if (diffInMinutes < 0 && diffInMinutes > -120) {
     return (
       <span className="badge bg-red-100 text-red-800 font-semibold">
-        Happening Now!
-      </span>
-    );
-  } else if (diffInMinutes < 60) {
-    return (
-      <span className="badge bg-orange-100 text-orange-800 font-semibold">
-        In {Math.round(diffInMinutes)} min
-      </span>
-    );
-  } else if (diffInMinutes < 180) {
-    return (
-      <span className="badge badge-warning">
-        In {Math.round(diffInMinutes / 60)}h
+        now
       </span>
     );
   }
+
+  // Event is in the past
+  if (diffInMinutes < 0) {
+    return null;
+  }
+
+  // Event is within the next hour - show minutes
+  if (diffInMinutes < 60) {
+    return (
+      <span className="badge bg-orange-100 text-orange-800 font-semibold">
+        {Math.round(diffInMinutes)}m
+      </span>
+    );
+  }
+
+  // Event is happening today - show hours
+  if (isToday) {
+    const hours = Math.round(diffInMinutes / 60);
+    return (
+      <span className="badge badge-warning">
+        {hours}h
+      </span>
+    );
+  }
+
   return null;
 };
 
