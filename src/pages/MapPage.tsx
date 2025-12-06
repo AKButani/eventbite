@@ -16,21 +16,19 @@ const defaultIcon = icon({
 });
 
 const userLocationIcon = icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCAyNSA0MSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjRkYwMDAwIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBkPSJNMTIuNSAwQzUuNiAwIDAgNS42IDAgMTIuNWMwIDcuNyAxMi41IDI4LjUgMTIuNSAyOC41UzI1IDIwLjIgMjUgMTIuNUMyNSA1LjYgMTkuNCAwIDEyLjUgMHptMCAxN2MtMi41IDAtNC41LTItNC41LTQuNXMyLTQuNSA0LjUtNC41IDQuNSAyIDQuNSA0LjUtMiA0LjUtNC41IDQuNXoiLz48L3N2Zz4=',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [30, 46],
-  iconAnchor: [15, 46],
-  popupAnchor: [1, -38],
-  shadowSize: [46, 46],
-  className: 'user-location-marker',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
 });
 
 export default function MapPage() {
   const navigate = useNavigate();
 
   const ethCenter: [number, number] = [47.3769, 8.5417];
-  const userLocation: [number, number] = [47.3769, 8.5417]; // ETH HG placeholder
+  const userLocation: [number, number] = [47.3767, 8.5492]; // ETH HG placeholder
 
   const formatTime = (date: Date) => {
     const today = new Date();
@@ -145,6 +143,7 @@ export default function MapPage() {
       </div>
 
       {/* Legend */}
+      {/*
       <div className="absolute bottom-4 left-4 z-[1000] bg-white rounded-lg shadow-lg p-4 max-w-xs">
         <h3 className="font-semibold text-gray-900 mb-2">Legend</h3>
         <div className="space-y-2 text-sm">
@@ -162,6 +161,7 @@ export default function MapPage() {
           </div>
         </div>
       </div>
+      */}
     </div>
   );
 }
