@@ -145,7 +145,7 @@ export default function EventDetailPage() {
             <div className="flex items-center">
               <Star className="h-8 w-8 text-yellow-500 fill-current" />
               <span className="text-4xl font-bold text-gray-900 ml-2">
-                {event.foodRating.toFixed(1)}
+                {event.foodRating?.toFixed(1)}
               </span>
               <span className="text-gray-500 ml-1">/5</span>
             </div>

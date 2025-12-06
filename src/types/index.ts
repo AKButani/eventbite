@@ -10,7 +10,7 @@ export interface Event {
   time: Date;
   hasFood: boolean;
   requiresSignup: boolean;
-  foodRating: number;
+  foodRating?: number;
   attendeeCount: number;
   description: string;
   category: string;
