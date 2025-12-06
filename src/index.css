@@ -29,6 +29,21 @@
     background-color: #f9fafb;
     color: #111827;
   }
+
+  * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  input,
+  textarea {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+  }
 }
 
 @layer components {
@@ -39,6 +54,10 @@
     border-radius: 0.5rem;
     font-weight: 500;
     transition: background-color 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
   .btn-primary:hover {
@@ -53,6 +72,10 @@
     font-weight: 500;
     border: 1px solid #2563eb;
     transition: background-color 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
   .btn-secondary:hover {
@@ -64,6 +87,10 @@
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
   .badge {
@@ -73,6 +100,10 @@
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 500;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
   .badge-success {
