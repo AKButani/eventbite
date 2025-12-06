@@ -1,4 +1,4 @@
-import { Event, Review, OrganizerStats } from '../types';
+import type { Event, Review, OrganizerStats } from '../types';
 
 const now = new Date();
 
