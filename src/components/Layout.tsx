@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Home, Map, PlusCircle, BarChart3, UtensilsCrossed } from 'lucide-react';
+import { Home, Map, PlusCircle, BarChart3 } from 'lucide-react';
 
 export default function Layout() {
   const location = useLocation();
@@ -15,7 +15,7 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <UtensilsCrossed className="h-8 w-8 text-primary-600" />
+              <img src="/logo.jpeg" alt="Eventbite Logo" className="h-8 w-8 object-contain" />
               <div>
                 <h1 className="text-2xl font-bold text-primary-600">Eventbite</h1>
                 <p className="text-xs text-gray-500 -mt-1">A free lunch does exist</p>
